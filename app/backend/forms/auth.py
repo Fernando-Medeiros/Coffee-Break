@@ -8,6 +8,13 @@ class FormLogin(FlaskForm):
     password = PasswordField("Senha", validators=[DataRequired(), Length(8, 20)])
     remember = BooleanField("Lembrar-me")
 
+    def dict(self) -> dict:
+        return {
+            "username": self.email.data,
+            "password": self.password.data,
+            "remember": self.remember.data,
+        }
+
 
 class FormNewAccount(FlaskForm):
     first_name = StringField("Nome", validators=[DataRequired()])
@@ -20,14 +27,30 @@ class FormNewAccount(FlaskForm):
         validators=[DataRequired(), EqualTo("password")],
     )
 
+    def dict(self) -> dict:
+        return {
+            "first_name": self.first_name.data,
+            "last_name": self.last_name.data,
+            "username": self.username.data,
+            "email": self.email.data,
+            "password": self.password.data,
+            "auth": self.auth.data,
+        }
+
 
 class FormSendToken(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), Email()])
 
+    def dict(self) -> dict:
+        return {"email": self.email.data}
+
 
 class FormNewPassword(FlaskForm):
     password = PasswordField("Senha", validators=[DataRequired(), Length(8, 20)])
-    auth = PasswordField(
+    confirm = PasswordField(
         "Confirmação da senha",
         validators=[DataRequired(), EqualTo("password")],
     )
+
+    def dict(self) -> dict:
+        return {"password": self.password.data, "confirm": self.confirm.data}
