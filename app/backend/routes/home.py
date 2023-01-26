@@ -1,39 +1,31 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import Blueprint, redirect, flash, request
 from flask_login import login_required
-from typing import Callable
+from app.backend.factory import inner_post
 from app.backend.forms.post import FormPost
 from app.backend.api.posts import PostsApi, ReplyApi
-from app.backend.api.client import ClientApi
 
 route = Blueprint("home", __name__, url_prefix="/posts")
 
 
-def inner(endpoint: str, func: Callable, **kwargs):
-    form, post_id = FormPost(), request.args.get("id", "-0")
-
-    context = {
-        "form": form,
-        "profiles": ClientApi.get_profiles(),
-        "posts": PostsApi.get_by_id(post_id)[1],
-    }
-    context.update(kwargs)
-
-    if form.validate_on_submit():
-        response, detail = func(post_id=post_id, content=form.content.data)
-        if response:
-            return redirect(url_for(endpoint, id=post_id))
-
-        flash(detail, "alert-danger")
-    return render_template("pages/posts.html", **context)
+def get_request_id() -> str:
+    return request.args.get("id", "-0")
 
 
 @route.route("/", methods=["GET", "POST"])
 @login_required
 def timeline():
-    return inner(
-        "home.timeline",
-        PostsApi.post_new,
-        posts=PostsApi.get_all(),
+    context = ["home.timeline", FormPost, PostsApi.post_new]
+
+    return inner_post(*context, posts=PostsApi.get_all())
+
+
+@route.route("/comment", methods=["GET", "POST"])
+@login_required
+def comment():
+    context = ["home.comment", FormPost, ReplyApi.post_new]
+
+    return inner_post(
+        *context, replies=ReplyApi.get_replies_by_post_id(get_request_id())[1]
     )
 
 
@@ -42,21 +34,12 @@ def timeline():
 def like():
     match request.args.get("action"):
         case "like":
-            PostsApi.post_add_or_remove_like(request.args.get("id", "-0"))
+            PostsApi.post_add_or_remove_like(get_request_id())
+
         case "like-reply":
-            ReplyApi.post_add_or_remove_like(request.args.get("id", "-0"))
+            ReplyApi.post_add_or_remove_like(get_request_id())
 
     return redirect(str(request.headers.get("referer")))
-
-
-@route.route("/comment", methods=["GET", "POST"])
-@login_required
-def comment():
-    return inner(
-        "home.comment",
-        ReplyApi.post_new,
-        replies=ReplyApi.get_replies_by_post_id(request.args.get("id", "-0"))[1],
-    )
 
 
 @route.route("/update", methods=["GET", "POST", "PATCH"])
@@ -64,13 +47,14 @@ def comment():
 def update():
     match request.args.get("action"):
         case "update":
-            return inner("home.update", PostsApi.update)
+            return inner_post("home.update", FormPost, PostsApi.update)
 
         case "update-reply":
-            return inner(
-                "home.update",
-                ReplyApi.update,
-                replies=ReplyApi.get_by_id(request.args.get("id", "-0"))[1],
+            context = ["home.update", FormPost, ReplyApi.update]
+
+            return inner_post(
+                *context,
+                replies=ReplyApi.get_by_id(get_request_id())[1],
             )
 
     return redirect(str(request.headers.get("referer")))
@@ -81,12 +65,12 @@ def update():
 def delete():
     match request.args.get("action"):
         case "delete":
-            response, detail = PostsApi.delete(request.args.get("id", "-0"))
+            response, detail = PostsApi.delete(get_request_id())
             if not response:
                 flash(detail, "alert-danger")
 
         case "delete-reply":
-            response, detail = ReplyApi.delete(request.args.get("id", "-0"))
+            response, detail = ReplyApi.delete(get_request_id())
             if not response:
                 flash(detail, "alert-danger")
 
