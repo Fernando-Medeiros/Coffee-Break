@@ -1,0 +1,32 @@
+<div class="container mt-2 m-auto p-2">
+    <!-- FLASH ALERT MESSAGES -->
+    <style>
+        .alert {
+            text-align: center;
+            border-radius: 0.5rem;
+            transition: .5s;
+        }
+
+        .alert-info {
+            color: rgb(0, 0, 0);
+        }
+
+        .alert-success {
+            color: rgb(48, 182, 48);
+        }
+
+        .alert-danger {
+            color: tomato;
+        }
+    </style>
+
+    {% with posts = get_flashed_messages(with_categories=True) %}
+    {% if posts %}
+    {% for category, message in posts %}
+    <div class="alert {{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>

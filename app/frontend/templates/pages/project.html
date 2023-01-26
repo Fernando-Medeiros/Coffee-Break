@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock %}
+
+{% block body%}
+
+<main class="container m-auto p-2 bg-white text-black">
+    
+    <div class="flex mt-24">
+        <div>
+            <a href={{api_url}} class="text-blue-900 text-xl hover:text-blue-500">
+                <ion-icon name="link-outline"></ion-icon>
+                Repo
+            </a>
+            <img src={{api_img}}>
+        </div>
+
+        <div>
+            <a href={{app_url}} class="text-blue-900 text-xl hover:text-blue-500">
+                <ion-icon name="link-outline"></ion-icon>
+                Repo
+            </a>
+            <img src={{app_img}}>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

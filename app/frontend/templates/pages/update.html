@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock %}
+
+{% block body%}
+
+<main class="container m-auto p-2">
+
+
+    <section id="forms" class="p-2 mt-10">
+
+    </section>
+
+    <hr>
+
+    <section id="delete-account" class="p-2 mt-10 flex gap-5 text-red-700/95 items-center">
+        <span>
+            Deletar a conta?
+        </span>
+        <a href={{ url_for("profile.delete") }} class="border-4 rounded-full drop-shadow-md hover:text-red-900/95">
+            <ion-icon name="skull-outline" class="text-4xl"></ion-icon>
+        </a>
+    </section>
+
+</main>
+
+
+{% endblock %}

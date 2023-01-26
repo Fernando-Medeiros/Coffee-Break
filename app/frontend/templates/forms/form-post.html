@@ -1,0 +1,16 @@
+
+<form method="POST" action="" class="flex gap-3 m-auto w-[500px]">
+    
+    {{ form.csrf_token }}
+
+    <fieldset class="w-full h-auto">
+        {{form.content(class='px-2 w-full h-20 h-auto rounded text-black')}}
+    </fieldset>
+
+    <button type="submit" class="flex items-center justify-center text-white p-2 w-auto border rounded
+    h-auto bg-gradient-to-r from-sky-500 to-indigo-500
+    hover:border-white">
+        <ion-icon name="send-outline" class="text-xl"></ion-icon>
+    </button>
+
+</form>

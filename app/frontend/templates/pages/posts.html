@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock %}
+
+
+{% block body%}
+
+
+<main class="container flex gap-10 m-auto p-2">
+
+    <!-- NEW PROFILES -->
+    <section class="mt-24 w-auto h-auto border flex flex-col items-center gap-2 p-2">
+        <tr>
+            {% include "schemas/username.html" %}
+        </tr>
+    </section>
+
+
+    <!-- SCHEMAS -->
+    <section class="mt-24 m-auto w-full p-2 grid gap-5 rounded border">
+        
+        <!-- DEFAULT - TIMELINE -->
+        {% if "timeline" in request.endpoint %}
+            {% include "forms/form-post.html" %}            
+            {% include "alert.html" %}    
+            <tr>
+                {% include "schemas/posts.html" %}
+            </tr>
+        
+        <!-- COMMENTS -->
+        {% elif "comment" in request.endpoint %}
+            <tr>
+                {% include "schemas/posts.html" %}
+                {% include "schemas/replies.html" %}
+            </tr>
+            {% include "forms/form-post.html" %}            
+            {% include "alert.html" %}    
+        
+        <!-- UPDATE-REPLY -->
+        {% elif "update-reply" in request.args.values() %}
+            <tr>    
+                {% include "schemas/replies.html" %}
+            </tr>
+            {% include "forms/form-post.html" %}            
+            {% include "alert.html" %}    
+
+        
+        {% else %} 
+            <tr>
+                {% include "schemas/posts.html" %}
+            </tr>
+            {% include "forms/form-post.html" %}            
+            {% include "alert.html" %}    
+        
+        {% endif %}
+
+    </section>
+
+</main>
+{% endblock %}

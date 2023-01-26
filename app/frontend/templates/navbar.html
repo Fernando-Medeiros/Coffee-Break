@@ -1,0 +1,74 @@
+<nav class="fixed z-40 w-screen self-start h-auto text-white bg-blue-900/95">
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="container block m-auto h-auto p-2 flex-wrap justify-center gap-3 items-center hidden
+                          md:justify-between md:flex">
+
+        <div class="w-auto h-auto flex flex-wrap justify-center items-center gap-5
+                md:justify-between md:gap-20">
+
+            <!-- BRAND -->
+            <a class="w-[40px] flex" href="{{ url_for('home.timeline') }}">
+                <img src="{{ url_for('static', filename='img/logo.png') }}">
+            </a>
+
+            <!-- PAGES -->
+            <div class="flex justify-between gap-20">
+                <a class="hover:text-gray-300" href="{{ url_for('home.timeline') }}"> Postagens </a>
+                <a class="hover:text-gray-300" href="{{ url_for('project.about') }}"> Projeto </a>
+            </div>
+
+        </div>
+
+        <!-- PROFILE -->
+        <div class="flex justify-between w-36 items-center">
+            <!-- TIMELINE -->
+            <a class="w-[40px] flex" href="{{ url_for('profile.timeline') }}">
+                <img src="{{ url_for('static', filename='img/default.png') }}">
+            </a>
+
+            
+            <!-- LOGOUT -->
+            <a href="{{ url_for('auth.logout') }}">
+                <ion-icon name="log-out-outline" class="text-[33px]"></ion-icon>
+            </a>
+        </div>
+
+    </nav>
+
+
+
+
+    <!-- MOBILE -->
+    <nav class="container py-2 px-4 m-auto md:hidden">
+
+        <div class="flex w-full h-auto justify-between items-center">
+            <!-- BRAND -->
+            <a class="w-[30px]" href="{{ url_for('home.timeline') }}">
+                <img src="{{ url_for('static', filename='img/logo.png') }}">
+            </a>
+
+            <div class="flex gap-5 items-center">
+                <p translate="no"> Dev Social</p>
+
+                <!-- MENU ICON -->
+                <button id="menu">
+                    <ion-icon class="text-3xl" name="menu-outline"></ion-icon>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- HIDDEN -->
+        <div id="pages" class="flex flex-col justify-center items-center gap-5 mt-3 hidden">
+            <!-- PAGES -->
+            <div class="flex justify-between gap-20 md:hidden">
+                <a class="hover:text-gray-300" href="{{ url_for('home.timeline') }}"> Postagens </a>
+                <a class="hover:text-gray-300" href="{{ url_for('project.about') }}"> Projeto </a>
+            </div>
+
+        </div>
+
+    </nav>
+
+</nav>

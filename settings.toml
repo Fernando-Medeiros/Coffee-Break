@@ -1,0 +1,22 @@
+[default]
+ENV = "@jinja {{env.ENV}}"
+DEBUG = "@jinja {{env.FLASK_DEBUG}}"
+TITLE = "coffee break"
+
+
+EXTENSIONS = [
+"setup:init_app"
+]
+
+
+[production]
+SECRET_KEY = "@jinja {{env.SECRET_KEY}}"
+
+
+[development]
+SECRET_KEY = "@jinja {{env.SECRET_KEY_DEV}}"
+
+
+[test]
+SECRET_KEY = "@jinja {{env.SECRET_KEY_TEST}}"
+WTF_CSRF_ENABLED = false

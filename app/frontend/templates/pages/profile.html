@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock %}
+
+{% block body%}
+
+<main class="container m-auto p-2">
+
+    {% if 'user' in request.args.keys() %}
+        {% include "schemas/profile-users.html" %}
+    {% else %}
+        {% include "schemas/profile-client.html" %}
+    {% endif %}
+
+</main>
+
+{% endblock %}
