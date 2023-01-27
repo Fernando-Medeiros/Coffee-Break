@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="font-primary bg-black/5 text-[#181818]"></body>
+<body class="font-primary bg-black/5 text-[#181818] bg-gradient-to-r from-sky-500/80 to-[#D9A404]/40"></body>
 
 {% block navbar %}
 {% endblock %}
@@ -39,6 +39,8 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+<!-- NAVBAR -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/navbar.js') }}"></script>
 </body>
 
 </html>

@@ -2,10 +2,10 @@
 
 {% block body %}
 
-<main class="flex m-auto text-white">
+<main class="flex text-white md:m-auto">
     
     {% include "brand.html" %}
-    
+
     {% if "login" in request.endpoint %}
         {% include "forms/form-login.html" %}  
     

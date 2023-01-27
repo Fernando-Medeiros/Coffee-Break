@@ -1,20 +1,22 @@
 
-<section id="brand" class="w-[0px] bg-white/50 text-black flex flex-col md:w-full h-screen">    
+<section id="brand" class="w-[0px] bg-white/50 text-black hidden flex-col md:w-full md:flex h-screen">    
     
-    <span class="text-center text-[36px] md:text-[75px]">
-        { coffee break }
+    <span class="text-center m-4  border-b md:text-[35px] xl:text-[60px]">
+        O}-{-{ coffee break }-}-{O
     </span>
 
-    <span id="text" class=" mt-16 items-center justify-center grid p-2 text-lg">
-        <p>from typing import List</p>
-        <p>from fastapi import APIRouter, Depends</p>
-        <p>from app.models.post import PostRequest, PostResponse, ResponseTimeline</p>
-        <p>from app.models.user import ProfileModel</p>
-        <p>from app.security.session import session</p>
-        <p>from .controllers.post_controller import PostController</p>
-        <br>
-        router = APIRouter()
-    </span>
+    <div class="h-full">
+        <span id="text" class="h-auto mt-16 items-center justify-center grid p-2 text-lg">
+            <p>from typing import List</p>
+            <p>from fastapi import APIRouter, Depends</p>
+            <p>from app.models.post import PostRequest, PostResponse, ResponseTimeline</p>
+            <p>from app.models.user import ProfileModel</p>
+            <p>from app.security.session import session</p>
+            <p>from .controllers.post_controller import PostController</p>
+            <br>
+            router = APIRouter()
+        </span>
+    </div>
 
-
+    {% include "footer.html" %}
 </section>
