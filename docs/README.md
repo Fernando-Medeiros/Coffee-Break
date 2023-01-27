@@ -1,8 +1,8 @@
 # Coffee Break -- social network
 
-<div style="display:flex; gap:10px">
-<img src="index.png" width=50%>
-<img src="profile.png" width=50%>
+<div align="center" style="display:flex; gap:10px">
+<img src="index.png" width=500px>
+<img src="profile.png" width=500px>
 </div>
 
 <br>
