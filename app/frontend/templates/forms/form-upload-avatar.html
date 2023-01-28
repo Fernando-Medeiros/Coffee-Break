@@ -1,0 +1,15 @@
+
+<form method="POST" action="" enctype="multipart/form-data" class="p-2 flex w-min h-min gap-4">
+
+    {{ form.csrf_token }}
+
+    <fieldset>
+        {{ form.avatar(class='p-2') }}
+    </fieldset>
+
+    <button type='submit' class="flex items-center text-white p-2 w-min border border-gray-500/75 rounded
+        h-auto hover:border-white">
+        Enviar
+    </button>
+
+</form>

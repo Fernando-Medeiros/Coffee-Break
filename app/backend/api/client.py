@@ -40,8 +40,14 @@ class ClientApi:
 
         return resp.json().get("detail")
 
+    @classmethod
+    def upload_avatar(cls, **kwargs) -> tuple[bool, str]:
+        resp = requests.patch(
+            cls._endpoint("/avatar"), data=kwargs, headers=_authorization()
+        )
+        return resp.ok, resp.json().get("detail")
+
     # up account
     # up profile
     # post birthday
     # up birthday
-    # up avatar

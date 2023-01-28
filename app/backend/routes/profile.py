@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, flash
+from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask_login import login_required
 from app.backend.api.client import ClientApi
 from app.backend.api.posts import PostsApi
+from app.backend.forms.update import UploadAvatar
 
 route = Blueprint("profile", __name__, url_prefix="/profile")
 
@@ -18,15 +19,20 @@ def timeline():
 
     context.update(
         profile,
-        posts=PostsApi.get_posts_by_username(profile["username"])[::-1],
+        posts=PostsApi.get_posts_by_username(profile["username"]),
     )
     return render_template("pages/profile.html", **context)
 
 
-@route.route("/update", methods=["GET", "PATCH"])
+@route.route("/update", methods=["GET", "POST"])
 @login_required
 def update():
-    context = {}
+    form = UploadAvatar()
+
+    if form.validate_on_submit():
+        form.inner(ClientApi.upload_avatar)
+
+    context = {"form": form}
     return render_template("pages/update.html", **context)
 
 
@@ -35,4 +41,4 @@ def update():
 def delete():
     detail = ClientApi.delete()
     flash(detail, "alert-info")
-    return redirect("/")
+    return redirect(url_for("auth.login"))
