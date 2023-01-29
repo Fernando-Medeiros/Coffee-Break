@@ -2,13 +2,13 @@
     
     {{ form.csrf_token }}
 
-    <fieldset class="w-full h-auto">
-        {{form.content(class='px-2 w-full h-20 h-auto rounded text-black')}}
+    <fieldset class="flex gap-3 w-full h-auto">
+        {{form.content(class='px-2 w-full h-15 h-auto rounded bg-white/50 border border-gray-500/50')}}
+        
+            <button type="submit" class="flex items-center justify-center text-white p-2 px-2 w-auto border rounded
+                h-auto bg-gradient-to-r from-sky-500 to-indigo-500 hover:scale-110 hover:duration-300">
+                <ion-icon name="send-outline" class="text-xl"></ion-icon>
+            </button>
     </fieldset>
-
-    <button type="submit" class="flex items-center justify-center text-white p-2 w-full border rounded
-        h-auto bg-gradient-to-r from-sky-500 to-indigo-500 hover:border-white">
-        <ion-icon name="send-outline" class="text-xl"></ion-icon>
-    </button>
 
 </form>

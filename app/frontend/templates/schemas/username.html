@@ -1,12 +1,12 @@
 
 {% for profile in profiles %}
 
-<a href="{{url_for('profile.timeline', user=profile['username']) }}" class="w-[135px] p-1 hover:border rounded-full">
+<a href="{{url_for('profile.timeline', user=profile['username']) }}" class="min-w-[200px] p-1 hover:border rounded-md block">
     
-    <div class="flex w-auto h-auto gap-2 items-center">
-
+    <div class="flex w-full h-auto gap-2 items-center">
+        
         <img src={{ profile['avatar'] }}
-        class="w-[24px] h-[24px] border-2 rounded-full ">
+        class="w-[32px] h-[32px] rounded-full ">
 
         <span class="text-[12px]">
             @{{profile["username"]}}

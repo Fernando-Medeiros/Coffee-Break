@@ -1,5 +1,5 @@
 <!-- FORM NEW ACCOUNT -->
-<section id="form" class="w-full h-screen bg-black/90 pt-24 m-auto p-2 md:m-auto md:w-[620px]">
+<section id="form" class="w-full h-auto bg-black/90 pt-24 m-auto p-2 md:m-auto md:w-[620px]">
 
     <div class="w-full p-1 flex justify-center">
         <a href="{{ url_for('home.timeline') }}">
@@ -18,7 +18,7 @@
                 {{ form.first_name.label }}
 
                 {% if form.first_name.errors %}
-                {{ form.first_name (class='px-2 h-12 rounded text-black border-2 border-red-700/75') }}
+                {{ form.first_name (class='px-2 h-12 rounded bg-white/5  border-2 border-red-700/75') }}
 
                 <div class="alert-danger">
                     {% for error in form.first_name.errors %}
@@ -27,7 +27,7 @@
                 </div>
 
                 {% else %}
-                {{ form.first_name(class='px-2 h-12 rounded text-black') }}
+                {{ form.first_name(class='px-2 h-12 rounded bg-white/5 border border-gray-500/50') }}
                 {% endif %}
             </div>
 
@@ -36,7 +36,7 @@
                 {{ form.last_name.label }}
 
                 {% if form.last_name.errors %}
-                {{ form.last_name (class='px-2 h-12 rounded text-black border-2 border-red-700/75') }}
+                {{ form.last_name (class='px-2 h-12 rounded bg-white/5 border-2 border-red-700/75') }}
 
                 <div class="alert-danger">
                     {% for error in form.last_name.errors %}
@@ -45,7 +45,7 @@
                 </div>
 
                 {% else %}
-                {{ form.last_name(class='px-2 h-12 rounded text-black') }}
+                {{ form.last_name(class='px-2 h-12 rounded bg-white/5 border border-gray-500/50') }}
                 {% endif %}
             </div>
 
@@ -54,7 +54,7 @@
                 {{ form.username.label }}
 
                 {% if form.username.errors %}
-                {{ form.username (class='px-2 h-12 rounded text-black border-2 border-red-700/75') }}
+                {{ form.username (class='px-2 h-12 rounded bg-white/5 border-2 border-red-700/75') }}
 
                 <div class="alert-danger">
                     {% for error in form.username.errors %}
@@ -63,7 +63,7 @@
                 </div>
 
                 {% else %}
-                {{ form.username(class='px-2 h-12 rounded text-black') }}
+                {{ form.username(class='px-2 h-12 rounded bg-white/5 border border-gray-500/50') }}
                 {% endif %}
             </div>
 
@@ -72,7 +72,7 @@
                 {{ form.email.label }}
 
                 {% if form.email.errors %}
-                {{ form.email (class='px-2 h-12 rounded text-black border-2 border-red-700/75') }}
+                {{ form.email (class='px-2 h-12 rounded bg-white/5 border-2 border-red-700/75') }}
 
                 <div class="alert-danger">
                     {% for error in form.email.errors %}
@@ -81,7 +81,7 @@
                 </div>
 
                 {% else %}
-                {{ form.email(class='px-2 h-12 rounded text-black') }}
+                {{ form.email(class='px-2 h-12 rounded bg-white/5 border border-gray-500/50') }}
                 {% endif %}
             </div>
 
@@ -90,7 +90,7 @@
                 {{ form.password.label }}
 
                 {% if form.password.errors %}
-                {{ form.password (class='px-2 h-12 rounded text-black border-2 border-red-700/75')}}
+                {{ form.password (class='px-2 h-12 rounded bg-white/5 border-2 border-red-700/75')}}
 
                 <div class="alert-danger">
                     {% for error in form.password.errors %}
@@ -99,7 +99,7 @@
                 </div>
 
                 {% else %}
-                {{ form.password(class='px-2 h-12 rounded text-black') }}
+                {{ form.password(class='px-2 h-12 rounded bg-white/5 border border-gray-500/50') }}
                 {% endif %}
             </div>
 
@@ -108,7 +108,7 @@
                 {{ form.auth.label }}
 
                 {% if form.auth.errors %}
-                {{ form.auth (class='px-2 h-12 rounded text-black border-2 border-red-700/75')}}
+                {{ form.auth (class='px-2 h-12 rounded bg-white/5 border-2 border-red-700/75')}}
 
                 <div class="alert-danger">
                     {% for error in form.auth.errors %}
@@ -117,7 +117,7 @@
                 </div>
 
                 {% else %}
-                {{ form.auth(class='px-2 h-12 rounded text-black') }}
+                {{ form.auth(class='px-2 h-12 rounded bg-white/5 border border-gray-500/50') }}
                 {% endif %}
             </div>
 
@@ -126,9 +126,9 @@
         {% include "alert.html" %}
 
         <button type='submit' class="flex items-center justify-center text-white p-2 w-6/12 m-auto border border-gray-500/75 rounded
-             h-14 bg-gradient-to-r from-sky-500 to-[#D9A404]
-             hover:border-white">
-            Entrar
+            h-14 bg-gradient-to-r from-sky-500 to-[#D9A404]
+            hover:border-white">
+            Registrar
         </button>
 
     </form>

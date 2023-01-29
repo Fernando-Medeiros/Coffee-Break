@@ -11,7 +11,7 @@
 <main class="container flex gap-10 m-auto p-2">
 
     <!-- NEW PROFILES -->
-    <section class="hidden mt-24 w-auto h-auto border flex-col items-center gap-2 p-2 md:flex">
+    <section class="hidden mt-24 w-auto h-auto border border-gray-500/50 flex-col items-center gap-2 p-2 md:flex">
         <tr>
             {% include "schemas/username.html" %}
         </tr>
@@ -19,7 +19,7 @@
 
 
     <!-- SCHEMAS -->
-    <section class="mt-24 m-auto w-full p-2 grid gap-5 rounded border">
+    <section class="mt-24 m-auto w-full p-2 grid gap-5 rounded border border-gray-500/50">
         
         <!-- DEFAULT - TIMELINE -->
         {% if "timeline" in request.endpoint %}
