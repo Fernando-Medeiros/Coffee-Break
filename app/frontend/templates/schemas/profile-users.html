@@ -6,11 +6,15 @@
 
 <section id="info" class="flex p-2 w-full justify-between items-center bg-black/10 rounded-lg drop-shadow-md border-b border-gray-500/50">
 
+
     <div class="flex gap-10 p-2 items-center">
         
-        <img src={{ avatar }}
-            class="w-full max-w-[80px] border-2 rounded-full object-cover drop-shadow-md">
-            
+        {% if avatar != "default.png" %}
+            <img src={{ avatar }} class="w-full max-w-[80px] border-2 rounded-full object-cover drop-shadow-md">
+        
+        {% else %}
+            <ion-icon name="person-circle-sharp" class="text-3xl"></ion-icon>
+        {% endif %}
             
             <span class="flex gap-3 text-2xl items-center">
                 <p class="text-xl">

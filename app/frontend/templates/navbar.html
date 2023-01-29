@@ -24,6 +24,7 @@
         <div class="flex justify-between w-36 items-center">
             <!-- TIMELINE -->
             <a class="w-[33px] flex hover:text-gray-300" href="{{ url_for('profile.timeline') }}">
+                
                 {% if avatar %}
                     <img src="{{ avatar }}">
                 {% else %}
@@ -70,7 +71,7 @@
                 
                 <!-- PROFILE -->
                 <a class="w-[26px] flex rounded-full items-center hover:text-gray-300" href="{{ url_for('profile.timeline') }}">
-                    {% if avatar %}
+                    {% if avatar != "default.png" %}
                         <img src="{{ avatar }}">
                     {% else %}
                         <ion-icon name="person-circle-sharp" class="text-3xl"></ion-icon>
