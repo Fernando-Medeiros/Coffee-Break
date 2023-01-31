@@ -1,33 +1,33 @@
-<section id="background" class="mt-14">
-    <img src={{ url_for('static', filename='img/background.jpg' ) }}
-        class="rounded-lg w-full h-20 object-cover drop-shadow-md md:h-40">
+<section id="background" class="mt-24 flex w-full justify-center bg-gray-500/10 rounded-lg">
+    
+    <div class="relative flex gap-10 w-full p-2 items-center">
+        <img src={{ background }} class="rounded-lg w-full h-[103px] object-cover drop-shadow-md  md:h-[195px]">
+        
+    </div>
 </section>
 
 
-<section id="info" class="flex p-2 w-full justify-between items-center bg-black/10 rounded-lg drop-shadow-md border-b border-gray-500/50">
+<section id="info" class="flex p-2 w-full h-auto justify-between items-center bg-black/10 rounded-lg drop-shadow-2xl">
 
-
-    <div class="flex gap-10 p-2 items-center">
+    <div class="absolute flex gap-10 p-2 items-center">
         
-        {% if avatar != "default.png" %}
-            <img src={{ avatar }} class="w-full max-w-[80px] border-2 rounded-full object-cover drop-shadow-md">
-        
-        {% else %}
-            <ion-icon name="person-circle-sharp" class="text-3xl"></ion-icon>
-        {% endif %}
+        <div class="relative flex right-0">
+            <img src={{ avatar}} class="w-[105px] p-1 bg-white rounded-full object-cover drop-shadow-2xl md:w-[152px]">
             
-            <span class="flex gap-3 text-2xl items-center">
-                <p class="text-xl">
-                    @{{ username }}
-                </p>
-            </span>
+        </div>
+
+        <span class="grid gap-5 mt-12 text-1xl items-center md:flex md:mt-8">
+            <p>
+                @{{ username }}
+            </p>
+        </span>
                 
     </div>
-
+    
 </section>
 
 
-<section id="bio" class="mt-10 w-full h-auto min-h-[50px] p-2 rounded-lg border-x-4 border-gray-500/50 bg-gray-500/20">
+<section id="bio" class="relative mt-20 w-full h-auto min-h-[50px] p-2 rounded-lg border-x-4 border-gray-500/50 bg-gray-500/20 md:mt-28">
     <p class="text-ml p-2 break-all">
         {{ bio }}
     </p>
@@ -40,16 +40,16 @@
             Posts {{ posts | length}}
         </span>
         <span class="text-1xl">
-            Curtidas {{ likes }}
+            Curtidas {{ likes | length}}
         </span>
         <span class="text-1xl">
-            Respostas {{ replies }}
+            Comentários {{ replies | length}}
         </span>
     </div>
 </section>
 
 
 
-<section id="posts" class="grid gap-10 mt-5 p-2 bg-blue-500/10 rounded-lg md:grid-cols-2">
+<section id="posts" class="grid gap-10 mt-5 p-2 border-x-4 border-gray-500/50 rounded-lg">
     {% include "schemas/posts.html" %}
 </section>

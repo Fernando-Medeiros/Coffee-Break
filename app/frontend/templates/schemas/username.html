@@ -5,13 +5,7 @@
     
     <div class="flex w-full h-auto gap-2 items-center">
         
-        {% if profile['avatar'] != "default.png" %}
-            <img src={{ profile['avatar'] }}
-            class="w-[32px] h-[32px] rounded-full ">
-        
-        {% else %}
-            <ion-icon name="person-circle-sharp" class="text-3xl"></ion-icon>
-        {% endif %}
+        <img src={{ profile['avatar'] }} class="w-[40px] h-[40px] bg-white rounded-full">
 
         <span class="text-[12px]">
             @{{profile["username"]}}

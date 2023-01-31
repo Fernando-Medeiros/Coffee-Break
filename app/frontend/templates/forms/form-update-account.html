@@ -1,0 +1,61 @@
+<!-- FORM LOGIN -->
+<section id="form-account" class="w-full h-auto bg-black/90 pt-10 m-auto p-2 md:m-auto md:w-[620px]">
+
+    {{ form_account.csrf_token }}
+
+    <fieldset class="flex flex-col gap-4">
+        
+        <!-- FIRST_NAME -->
+        <div class="flex flex-col gap-1 w-full">
+            {{ form_account.first_name.label }}
+
+            {% if form_account.first_name.errors %}
+            {{ form_account.first_name (class='px-2 h-12 rounded bg-white/5 border-2 border-red-700/75') }}
+            <div class="alert-danger">
+                {% for error in form_account.first_name.errors %}
+                {{ error }}
+                {% endfor %}
+            </div>
+
+            {% else %}
+            {{ form_account.first_name(class='px-2 h-12 rounded bg-white/5 border border-gray-500/50') }}
+            {% endif %}
+        </div>
+        
+        <!-- LAST_NAME -->
+        <div class="flex flex-col gap-1 w-full">
+            {{ form_account.last_name.label }}
+
+            {% if form_account.last_name.errors %}
+            {{ form_account.last_name (class='px-2 h-12 rounded bg-white/5 border-2 border-red-700/75') }}
+            <div class="alert-danger">
+                {% for error in form_account.last_name.errors %}
+                {{ error }}
+                {% endfor %}
+            </div>
+
+            {% else %}
+            {{ form_account.last_name(class='px-2 h-12 rounded bg-white/5 border border-gray-500/50') }}
+            {% endif %}
+        </div>
+        
+        
+        <!-- EMAIL -->
+        <div class="flex flex-col gap-1 w-full">
+            {{ form_account.email.label }}
+
+            {% if form_account.email.errors %}
+            {{ form_account.email (class='px-2 h-12 rounded bg-white/5 border-2 border-red-700/75') }}
+            <div class="alert-danger">
+                {% for error in form_account.email.errors %}
+                {{ error }}
+                {% endfor %}
+            </div>
+
+            {% else %}
+            {{ form_account.email(class='px-2 h-12 rounded bg-white/5 border border-gray-500/50') }}
+            {% endif %}
+        </div>
+
+    </fieldset>
+</section>

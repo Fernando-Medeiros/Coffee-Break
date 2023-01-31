@@ -1,16 +1,16 @@
-<form id="form-avatar" method="POST" action="" enctype="multipart/form-data" class="hidden">
+<form id="form-background" method="POST" action="" enctype="multipart/form-data" class="hidden">
 
-    {{ form_avatar.csrf_token }}
+    {{ form_background.csrf_token }}
 
     <fieldset class='flex flex-col gap-2'>
         <div class="flex justify-between">
-            Avatar
+            Background
                 
             <button type='submit' class="flex items-center text-white p-2 w-min h-min border border-gray-500/75 rounded hover:border-white">
                 Atualizar
             </button>
         </div>
-        {{ form_avatar.avatar }}
+        {{ form_background.background }}
     </fieldset>
 
 </form>

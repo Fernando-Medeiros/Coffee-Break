@@ -1,0 +1,18 @@
+<form id="form-bio" method="POST" action="" class="hidden w-full h-auto block">
+    
+    {{ form_bio.csrf_token }}
+
+    <fieldset class="flex flex-col gap-2">
+        <strong>
+            Bio
+        </strong>
+
+        {{form_bio.content(class='px-2 w-full h-64 max-h-64 rounded bg-white/50 border border-gray-500/50')}}
+        
+            <button type="submit" class="flex items-center justify-center text-white p-2 px-2 w-auto border rounded
+                h-auto bg-gradient-to-r from-sky-500 to-indigo-500 hover:scale-110 hover:duration-300">
+                <ion-icon name="send-outline" class="text-xl"></ion-icon>
+            </button>
+    </fieldset>
+
+</form>

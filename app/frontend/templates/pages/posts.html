@@ -24,7 +24,7 @@
         <!-- DEFAULT - TIMELINE -->
         {% if "timeline" in request.endpoint %}
             {% include "forms/form-post.html" %}            
-            {% include "alert.html" %}    
+           
             <tr>
                 {% include "schemas/posts.html" %}
             </tr>
@@ -36,7 +36,6 @@
                 {% include "schemas/replies.html" %}
             </tr>
             {% include "forms/form-post.html" %}            
-            {% include "alert.html" %}    
         
         <!-- UPDATE-REPLY -->
         {% elif "update-reply" in request.args.values() %}
@@ -44,7 +43,6 @@
                 {% include "schemas/replies.html" %}
             </tr>
             {% include "forms/form-post.html" %}            
-            {% include "alert.html" %}    
 
         
         {% else %} 
@@ -52,7 +50,6 @@
                 {% include "schemas/posts.html" %}
             </tr>
             {% include "forms/form-post.html" %}            
-            {% include "alert.html" %}    
         
         {% endif %}
 

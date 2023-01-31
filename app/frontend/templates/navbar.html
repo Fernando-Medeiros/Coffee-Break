@@ -1,7 +1,7 @@
 <nav class="fixed z-40 w-screen self-start h-auto bg-black border-b border-gray-500/50">
 
     <!-- NAVBAR -->
-    <nav id="navbar" class="container block m-auto h-auto p-2 flex-wrap justify-center gap-3 items-center hidden
+    <nav id="navbar" class="container block m-auto h-auto p-2 mt-2 flex-wrap justify-center gap-3 items-center hidden
                           md:justify-between md:flex">
 
         <div class="w-auto h-auto flex flex-wrap justify-center items-center gap-5
@@ -14,28 +14,38 @@
 
             <!-- PAGES -->
             <div class="flex justify-between gap-20">
-                <a class="hover:text-gray-300" href="{{ url_for('home.timeline') }}"> Postagens </a>
-                <a class="hover:text-gray-300" href="{{ url_for('project.about') }}"> Projeto </a>
+
+                <!-- HOME -->
+                <a class="hover:text-gray-300" href="{{ url_for('home.timeline') }}">
+                    <ion-icon name="home" class="text-3xl"></ion-icon>
+                </a>
+
+                <!-- PROJECT - REPOS - GITHUB -->
+                <a class="hover:text-gray-300" href="{{ url_for('project.about') }}">
+                    <ion-icon name="git-branch" class="text-3xl"></ion-icon>
+                </a>
+
             </div>
 
         </div>
 
+
         <!-- PROFILE -->
         <div class="flex justify-between w-36 items-center">
+
             <!-- TIMELINE -->
-            <a class="w-[33px] flex hover:text-gray-300" href="{{ url_for('profile.timeline') }}">
-                
-                {% if avatar %}
-                    <img src="{{ avatar }}">
-                {% else %}
-                    <ion-icon name="person-circle-sharp" class="text-3xl"></ion-icon>
-                {% endif %}
+            <a class="hover:text-gray-300" href="{{ url_for('profile.timeline') }}">
+                <ion-icon name="person" class="text-3xl"></ion-icon>
+            </a>
+            
+            <!-- UPDATE ACCOUNT -->
+            <a class="hover:text-gray-300" href={{ url_for("profile.update") }}>
+                <ion-icon name="settings-sharp" class="text-3xl"></ion-icon>
             </a>
 
-            
             <!-- LOGOUT -->
-            <a class="text-[33px] mt-2 hover:text-gray-300" href="{{ url_for('auth.logout') }}">
-                <ion-icon name="log-out-outline"></ion-icon>
+            <a class="hover:text-gray-300" href="{{ url_for('auth.logout') }}">
+                <ion-icon name="log-out" class="text-3xl"></ion-icon>
             </a>
         </div>
 
@@ -46,6 +56,7 @@
     <nav class="container py-2 px-4 m-auto md:hidden">
                 
         <div class="flex w-full h-auto justify-between items-center">
+
             <!-- BRAND -->
             <a class="w-[30px]" href="{{ url_for('home.timeline') }}">
                 <img src="{{ url_for('static', filename='img/logo.png') }}">
@@ -58,30 +69,42 @@
                 <button id="menu">
                     <ion-icon class="text-3xl" name="menu-outline"></ion-icon>
                 </button>
+
             </div>
 
         </div>
 
+
         <!-- HIDDEN -->
-        <div id="pages" class="flex justify-center items-center mt-3 hidden border-t">
+        <div id="pages" class="flex justify-center items-center mt-2 hidden border-x-4 border-gray-500/50 rounded-full">
             <!-- PAGES -->
             <div class="flex justify-between gap-10 items-center md:hidden">
-                <a class="items-center hover:text-gray-300" href="{{ url_for('home.timeline') }}"> Postagens </a>
-                <a class="items-center hover:text-gray-300" href="{{ url_for('project.about') }}"> Projeto </a>
+                
+                <!-- HOME -->
+                <a class="items-center hover:text-gray-300" href="{{ url_for('home.timeline') }}">
+                    <ion-icon name="home" class="text-2xl"></ion-icon>
+                </a>
+
+                <!-- PROJECT - REPOS - GITHUB -->
+                <a class="items-center hover:text-gray-300" href="{{ url_for('project.about') }}"> 
+                    <ion-icon name="git-branch" class="text-2xl"></ion-icon>
+                </a>
                 
                 <!-- PROFILE -->
-                <a class="w-[26px] flex rounded-full items-center hover:text-gray-300" href="{{ url_for('profile.timeline') }}">
-                    {% if avatar != "default.png" %}
-                        <img src="{{ avatar }}">
-                    {% else %}
-                        <ion-icon name="person-circle-sharp" class="text-3xl"></ion-icon>
-                    {% endif %}        
-                </a>
+                <a class="w-[32px] flex rounded-full hover:text-gray-300" href="{{ url_for('profile.timeline') }}">
+                    <ion-icon name="person" class="text-2xl"></ion-icon>
+                </a>   
                 
-                <!-- LOGOUT -->
-                <a class="hover:text-gray-300 items-center" href="{{ url_for('auth.logout') }}">
-                    <ion-icon name="log-out-outline" class="text-center text-[26px] mt-2"></ion-icon>
+                <!-- UPDATE ACCOUNT -->
+                <a class="items-center hover:text-gray-300" href={{ url_for("profile.update") }}>
+                    <ion-icon name="settings-sharp" class="text-2xl"></ion-icon>
                 </a>
+
+                <!-- LOGOUT -->
+                <a class="items-center hover:text-gray-300" href="{{ url_for('auth.logout') }}">
+                    <ion-icon name="log-out" class="text-2xl"></ion-icon>
+                </a>
+
             </div>
         </div>
 

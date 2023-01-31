@@ -4,21 +4,32 @@
 {% include "navbar.html" %}
 {% endblock %}
 
+
 {% block body%}
 
 <main class="container m-auto p-2">
 
     <section id="forms" class="p-2 mt-20">
+
+        <form method="POST" action="" class="p-2 flex flex-col gap-4">
         
-        {% include "forms/form-upload-avatar.html" %}
-        
+            {% include "forms/form-update-account.html" %}
+            {% include "forms/form-birthday.html" %}
+
+            <button type='submit' class="flex items-center justify-center text-white p-2 w-6/12 m-auto border border-gray-500/75 rounded
+                h-14 bg-gradient-to-r from-sky-500 to-[#D9A404] md:w-[620px] hover:border-white">
+                Atualizar
+            </button>
+
+        </form>
+
     </section>
 
     <hr>
 
     <section id="delete-account" class="p-2 mt-10 flex gap-5 text-red-700/95 items-center">
         <span>
-            Deletar a conta?
+            Deletar à conta?
         </span>
         <a href={{ url_for("profile.delete") }} class="border-4 rounded-full drop-shadow-md hover:text-red-900/95">
             <ion-icon name="skull-outline" class="text-4xl"></ion-icon>

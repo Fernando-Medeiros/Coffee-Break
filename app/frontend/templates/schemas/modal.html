@@ -1,0 +1,15 @@
+<section id="modal" class="hidden justify-center w-full h-full fixed bg-white/50 z-50">
+   
+    <div class="absolute m-auto h-96 w-96 p-4 m-auto inset-0 items-center flex justify-center bg-black rounded-lg">
+
+        <button id="button-close-modal">
+            <ion-icon name="close-circle-sharp" class="text-3xl absolute top-0 right-0"></ion-icon>
+        </button>
+        
+        {% include "forms/form-upload-avatar.html" %}
+        {% include "forms/form-upload-background.html" %}
+        {% include "forms/form-bio.html" %}
+
+    </div>
+
+</section>
