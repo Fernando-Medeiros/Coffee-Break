@@ -2,20 +2,45 @@ from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask_login import login_required
 from app.backend.api.client import ClientApi
 from app.backend.api.posts import PostsApi
-from app.backend.forms.update import UploadAvatar
+from app.backend.forms.update import (
+    FormUploadAvatar,
+    FormUploadBackground,
+    FormUpdateBio,
+    FormUpdateAccount,
+    FormUpdateBirthday,
+)
+from app.backend.factory import ConvertBytesToBase64
 
 route = Blueprint("profile", __name__, url_prefix="/profile")
 
 
-@route.route("/", methods=["GET"])
+@route.route("/", methods=["GET", "POST"])
 @login_required
 def timeline():
-    context = {}
+    context = {
+        "form_avatar": FormUploadAvatar(),
+        "form_background": FormUploadBackground(),
+        "form_bio": FormUpdateBio(),
+    }
 
     if "user" in request.args.keys():
-        profile = ClientApi.get_profile_by_username(request.args.get("user", ""))
+        profile = ClientApi.get_profile_by_username(request.args["user"])
     else:
         profile = ClientApi.get_account_data()
+
+        if request.files.get("avatar"):
+            return ConvertBytesToBase64.inner(
+                request.files["avatar"],
+                ClientApi.upload_avatar,
+            )
+        if request.files.get("background"):
+            return ConvertBytesToBase64.inner(
+                request.files["background"],
+                ClientApi.upload_background,
+            )
+        if request.form.get("content"):
+            ClientApi.upload_profile(**context["form_bio"].dict())
+            return redirect(url_for("profile.timeline"))
 
     context.update(
         profile,
@@ -27,12 +52,21 @@ def timeline():
 @route.route("/update", methods=["GET", "POST"])
 @login_required
 def update():
-    form = UploadAvatar()
+    context = {
+        "form_account": FormUpdateAccount(),
+        "form_birthday": FormUpdateBirthday(),
+    }
 
-    if form.validate_on_submit():
-        form.inner(ClientApi.upload_avatar)
+    if [request.form.get(key) != "" for key in FormUpdateAccount().dict().keys()]:
+        resp, detail = ClientApi.upload_account(**context["form_account"].dict())
 
-    context = {"form": form}
+        flash(detail, "alert-success") if resp else flash(detail, "alert-danger")
+
+    if request.form.get("date"):
+        resp, detail = ClientApi.put_birthday(**context["form_birthday"].dict())
+
+        flash(detail, "alert-success") if resp else flash(detail, "alert-danger")
+
     return render_template("pages/update.html", **context)
 
 
@@ -41,4 +75,5 @@ def update():
 def delete():
     detail = ClientApi.delete()
     flash(detail, "alert-info")
+
     return redirect(url_for("auth.login"))

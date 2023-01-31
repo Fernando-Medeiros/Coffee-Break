@@ -20,7 +20,7 @@ class AuthApi:
             login_user(
                 client,
                 remember=kwargs["remember"],
-                duration=timedelta(minutes=15),
+                duration=timedelta(minutes=30.0),
                 fresh=True,
             )
         return resp.ok, resp.json().get("detail")

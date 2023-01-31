@@ -1,13 +1,10 @@
-import os
-import base64
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed, FileRequired, FileStorage
-from werkzeug.utils import secure_filename
-from flask import request
-from typing import Callable
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from wtforms import TextAreaField, StringField, DateField
+from wtforms.validators import DataRequired, Length, Email, Optional
 
 
-class UploadAvatar(FlaskForm):
+class FormUploadAvatar(FlaskForm):
     avatar = FileField(
         "Upload",
         validators=[
@@ -16,38 +13,43 @@ class UploadAvatar(FlaskForm):
         ],
     )
 
-    @staticmethod
-    def _get_secure_filename(filename: str) -> str:
-        return secure_filename(filename)
 
-    @staticmethod
-    def _save(file: FileStorage, filename) -> None:
-        file.save(os.path.join("./tmp/avatar", filename))
+class FormUploadBackground(FlaskForm):
+    background = FileField(
+        "Upload",
+        validators=[
+            FileRequired(),
+            FileAllowed(["jpg", "png"], "Images only! -> .jpg or .png"),
+        ],
+    )
 
-    @staticmethod
-    def _read_file(filename) -> bytes:
-        with open(f"./tmp/avatar/{filename}", mode="rb") as file:
-            return base64.b64encode(file.read())
 
-    @staticmethod
-    def _delete_file():
-        if len(os.listdir("./tmp/avatar")) >= 1:
+class FormUpdateBio(FlaskForm):
+    content = TextAreaField(validators=[DataRequired(), Length(3, 254)])
 
-            for image in os.listdir("./tmp/avatar"):
-                os.remove("{}/{}".format("./tmp/avatar", image))
+    def dict(self) -> dict:
+        return {"bio": self.content.data}
 
-    def inner(self, func: Callable) -> bool:
-        file = request.files["avatar"]
 
-        if file.filename is not None:
-            filename = self._get_secure_filename(file.filename)
+class FormUpdateAccount(FlaskForm):
+    first_name = StringField("Nome", validators=[Optional()])
+    last_name = StringField("Sobrenome", validators=[Optional()])
+    email = StringField("Email", validators=[Optional(), Email()])
 
-            self._save(file, filename)
+    def dict(self) -> dict:
+        return {
+            "first_name": self.first_name.data,
+            "last_name": self.last_name.data,
+            "email": self.email.data,
+        }
 
-            func(avatar=self._read_file(filename))
 
-            # CLEAR TMP FILES
-            self._delete_file()
+class FormUpdateBirthday(FlaskForm):
+    date = DateField("Data de nascimento", validators=[Optional()])
 
-            return True
-        return False
+    def dict(self) -> dict:
+        return {
+            "day": self.date.data.day,
+            "month": self.date.data.month,
+            "year": self.date.data.year,
+        }

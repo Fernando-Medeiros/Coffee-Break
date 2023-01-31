@@ -1,5 +1,10 @@
-from flask import flash, redirect, render_template, url_for, request
+import os
+import base64
 from typing import Callable
+from flask import flash, redirect, render_template, url_for, request, Response
+from flask_wtf.file import FileStorage
+from werkzeug.utils import secure_filename
+
 from app.backend.api.posts import PostsApi
 from app.backend.api.client import ClientApi
 
@@ -35,3 +40,43 @@ def inner_post(endpoint: str, formModel: Callable, func: Callable, **kwargs):
 
         flash(detail, "alert-danger")
     return render_template("pages/posts.html", **context)
+
+
+class ConvertBytesToBase64:
+    path = "./tmp"
+
+    @classmethod
+    def _get_secure_filename(cls, filename: str) -> str:
+        return secure_filename(filename)
+
+    @classmethod
+    def _save(cls, file: FileStorage, filename) -> None:
+        file.save(os.path.join(cls.path, filename))
+
+    @classmethod
+    def _read_file(cls, filename) -> bytes:
+        with open(f"{cls.path}/{filename}", mode="rb") as file:
+            return base64.b64encode(file.read())
+
+    @classmethod
+    def _delete_file(cls):
+        if len(os.listdir(cls.path)) >= 1:
+
+            for image in os.listdir(cls.path):
+                os.remove("{}/{}".format(cls.path, image))
+
+    @classmethod
+    def inner(cls, file: FileStorage, func: Callable) -> Response:
+        if file.filename is not None:
+            filename = cls._get_secure_filename(file.filename)
+
+            cls._save(file, filename)
+
+            resp, detail = func(image=cls._read_file(filename))
+
+            # CLEAR TMP FILES
+            cls._delete_file()
+
+            if resp:
+                flash(detail, "alert-success")
+                return redirect(url_for("profile.timeline"))

@@ -47,7 +47,33 @@ class ClientApi:
         )
         return resp.ok, resp.json().get("detail")
 
-    # up account
-    # up profile
-    # post birthday
-    # up birthday
+    @classmethod
+    def upload_background(cls, **kwargs) -> tuple[bool, str]:
+        resp = requests.patch(
+            cls._endpoint("/background"), data=kwargs, headers=_authorization()
+        )
+        return resp.ok, resp.json().get("detail")
+
+    @classmethod
+    def upload_profile(cls, **kwargs) -> tuple[bool, str]:
+        """Optional: username, bio"""
+        resp = requests.patch(
+            cls._endpoint("/profile"), json=kwargs, headers=_authorization()
+        )
+        return resp.ok, resp.json().get("detail")
+
+    @classmethod
+    def upload_account(cls, **kwargs) -> tuple[bool, str]:
+        """Optional: first name, last name, email"""
+        resp = requests.patch(
+            cls._endpoint("/account"), json=kwargs, headers=_authorization()
+        )
+        return resp.ok, resp.json().get("detail")
+
+    @classmethod
+    def put_birthday(cls, **kwargs) -> tuple[bool, str]:
+        """day, month, year"""
+        resp = requests.put(
+            cls._endpoint("/birthday"), json=kwargs, headers=_authorization()
+        )
+        return resp.ok, resp.json().get("detail")
