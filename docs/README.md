@@ -5,6 +5,12 @@
 <img src="profile.png" width=500px>
 </div>
 
+
+<div align="center" style="display:flex; gap:10px">
+<img src="home.png" width=500px>
+<img src="update.png" width=500px>
+</div>
+
 <br>
   
 > **Coffee Break** é um projeto Front-end no contexto de uma pequena rede social
@@ -84,9 +90,11 @@ gunicorn 'app:create_app()'
 │   │   │   ├── auth.py
 │   │   │   ├── client.py
 │   │   │   └── posts.py
+│   │   ├── factory.py
 │   │   ├── forms
 │   │   │   ├── auth.py
-│   │   │   └── post.py
+│   │   │   ├── post.py
+│   │   │   └── update.py
 │   │   ├── models
 │   │   │   └── client.py
 │   │   ├── routers.py
@@ -98,21 +106,25 @@ gunicorn 'app:create_app()'
 │   ├── frontend
 │   │   ├── static
 │   │   │   ├── img
-│   │   │   │   ├── background.jpg
-│   │   │   │   ├── default.png
 │   │   │   │   └── logo.png
 │   │   │   └── js
-│   │   │       └── brand.js
+│   │   │       ├── modal.js
+│   │   │       └── navbar.js
 │   │   └── templates
 │   │       ├── alert.html
 │   │       ├── base.html
-│   │       ├── brand.html
+│   │       ├── footer.html
 │   │       ├── forms
+│   │       │   ├── form-bio.html
+│   │       │   ├── form-birthday.html
 │   │       │   ├── form-login.html
 │   │       │   ├── form-post.html
 │   │       │   ├── form-recover.html
 │   │       │   ├── form-register.html
-│   │       │   └── form-reset-password.html
+│   │       │   ├── form-reset-password.html
+│   │       │   ├── form-update-account.html
+│   │       │   ├── form-upload-avatar.html
+│   │       │   └── form-upload-background.html
 │   │       ├── navbar.html
 │   │       ├── pages
 │   │       │   ├── auth.html
@@ -121,6 +133,7 @@ gunicorn 'app:create_app()'
 │   │       │   ├── project.html
 │   │       │   └── update.html
 │   │       └── schemas
+│   │           ├── modal.html
 │   │           ├── posts.html
 │   │           ├── profile-client.html
 │   │           ├── profile-users.html
@@ -128,17 +141,18 @@ gunicorn 'app:create_app()'
 │   │           └── username.html
 │   └── __init__.py
 ├── docs
+│   ├── home.png
 │   ├── index.png
 │   ├── profile.png
 │   ├── README.md
-│   └── tasks.md
+│   ├── tasks.md
+│   └── update.png
 ├── LICENSE
 ├── Procfile
 ├── requirements-dev.txt
 ├── requirements.txt
 ├── runtime.txt
 ├── settings.toml
-└── setup.py
-
-15 directories, 46 files
+├── setup.py
+└── tmp
 ```
