@@ -1,4 +1,4 @@
-<div class="container mt-1 m-auto p-2">
+<div id="alert" class="fixed h-auto w-auto items-center flex justify-center bg-white/16 rounded-lg inset-x-0 bottom-0">
     <!-- FLASH ALERT MESSAGES -->
     <style>
         .alert {
@@ -8,7 +8,7 @@
         }
 
         .alert-info {
-            color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
         }
 
         .alert-success {
@@ -23,8 +23,8 @@
     {% with posts = get_flashed_messages(with_categories=True) %}
         {% if posts %}
             {% for category, message in posts %}
-                <div class="alert {{ category }}">
-                    {{ message }}
+                <div class="alert {{ category }} bg-sky-500/10 p-2">
+                    --{{ message }}--
                 </div>
             {% endfor %}
         {% endif %}

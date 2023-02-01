@@ -4,7 +4,6 @@ from datetime import timedelta
 from flask_login import login_user
 from app.backend.models.client import Client
 
-
 URI: str = os.environ["API_URI"]
 
 
@@ -20,10 +19,10 @@ class AuthApi:
             login_user(
                 client,
                 remember=kwargs["remember"],
-                duration=timedelta(minutes=30.0),
+                duration=timedelta(minutes=30),
                 fresh=True,
             )
-        return resp.ok, resp.json().get("detail")
+        return resp.ok, resp.json().get("detail", "")
 
     @staticmethod
     def post_refresh(**kwargs) -> Client | None:

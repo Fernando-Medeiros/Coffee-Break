@@ -76,8 +76,11 @@ Inicie o localhost
 # debug
 flask run
 
+# na sua rede wifi -> ex-ip:  '000.000.0.0'
+flask run -h 'O SEU IP' --port 5000
+
 # produção
-gunicorn 'app:create_app()'
+gunicorn -w 4 'app:create_app()'
 ```
 
 ## Estrutura
@@ -155,4 +158,6 @@ gunicorn 'app:create_app()'
 ├── settings.toml
 ├── setup.py
 └── tmp
+
+16 directories, 55 files
 ```

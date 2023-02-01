@@ -5,35 +5,38 @@
     
     <div class="flex gap-5 p-2 items-center justify-between">
         
-        <a href="{{ url_for('profile.timeline', user=post["author"]["username"]) }}" class="flex gap-5 items-center hover:text-white/50">
+        <a href="{{ url_for('profile.timeline', user=post["author"]["username"]) }}" class="flex gap-5 items-center hover:text-white/50 text-[15px] md:text-xl">
             
             <img src={{ post["author"]["avatar"] }} class="w-[34px] h-[34px] rounded-full">
             
-            <span class="text-xl">
+            <span class="grid gap-1">
                 @{{post["author"]["username"]}}
+                
+                <span class="text-[12px]">
+                    {{ post["created_at"][:5] }}
+                </span>        
             </span>
-            <span>
-                {{ post["created_at"][:5] }}
-            </span>
-         
-            <div class="flex gap-5 text-xl">
-                <a href={{ url_for("home.update", action="update", id=post['id']) }}>
+            
+        </a>
+        
+        <div class="flex gap-5 text-[15px] md:text-xl">
+            <a href={{ url_for("home.update", action="update", id=post['id']) }}>
                 {% if post['edit'] == True %}
                     <ion-icon name="create-outline" class="hover:text-white/50 text-green-500"></ion-icon>
                 {% else %}
                     <ion-icon name="create-outline" class="hover:text-white/50"></ion-icon>
                 {% endif %}                
             </a>
-    
+
             <a href={{ url_for("home.delete", action="delete", id=post['id']) }}>
                 <ion-icon name="trash-outline" class="hover:text-white/50"></ion-icon>
             </a>
-            </div>
-            
-        </a>
+        </div>
+        
     </div>
+
     
-    <hr>
+    <hr class="border-gray-500/50">
 
     <p class="h-auto p-2 break-all">
         {{ post["content"] }}
@@ -63,7 +66,7 @@
         
     </div>     
     
-    <hr>
+    <hr class="border-gray-500/50">
     
     <div class="flex justify-around items-center">
         

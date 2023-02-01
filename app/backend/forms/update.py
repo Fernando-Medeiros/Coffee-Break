@@ -9,7 +9,7 @@ class FormUploadAvatar(FlaskForm):
         "Upload",
         validators=[
             FileRequired(),
-            FileAllowed(["jpg", "png"], "Images only! -> .jpg or .png"),
+            FileAllowed(["jpg", "jpeg", "png"], "Images only"),
         ],
     )
 
@@ -19,7 +19,7 @@ class FormUploadBackground(FlaskForm):
         "Upload",
         validators=[
             FileRequired(),
-            FileAllowed(["jpg", "png"], "Images only! -> .jpg or .png"),
+            FileAllowed(["jpg", "jpeg", "png"], "Images only"),
         ],
     )
 

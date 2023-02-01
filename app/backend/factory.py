@@ -72,11 +72,15 @@ class ConvertBytesToBase64:
 
             cls._save(file, filename)
 
-            resp, detail = func(image=cls._read_file(filename))
+            if file.content_type.split("/")[1] in ["jpg", "jpeg", "png"]:
+                resp, detail = func(image=cls._read_file(filename))
+
+                if resp:
+                    flash(detail, "alert-success")
+            else:
+                flash("Images only", "alert-danger")
 
             # CLEAR TMP FILES
             cls._delete_file()
 
-            if resp:
-                flash(detail, "alert-success")
-                return redirect(url_for("profile.timeline"))
+        return redirect(url_for("profile.timeline"))

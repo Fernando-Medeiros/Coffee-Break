@@ -57,7 +57,7 @@ def update():
         "form_birthday": FormUpdateBirthday(),
     }
 
-    if [request.form.get(key) != "" for key in FormUpdateAccount().dict().keys()]:
+    if "name" in request.form.keys() or "email" in request.form.keys():
         resp, detail = ClientApi.upload_account(**context["form_account"].dict())
 
         flash(detail, "alert-success") if resp else flash(detail, "alert-danger")
