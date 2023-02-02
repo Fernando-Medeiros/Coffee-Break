@@ -39,7 +39,7 @@ def timeline():
                 ClientApi.upload_background,
             )
         if request.form.get("content"):
-            ClientApi.upload_profile(**context["form_bio"].dict())
+            ClientApi.update_profile(**context["form_bio"].dict())
             return redirect(url_for("profile.timeline"))
 
     context.update(
@@ -58,7 +58,7 @@ def update():
     }
 
     if "name" in request.form.keys() or "email" in request.form.keys():
-        resp, detail = ClientApi.upload_account(**context["form_account"].dict())
+        resp, detail = ClientApi.update_account(**context["form_account"].dict())
 
         flash(detail, "alert-success") if resp else flash(detail, "alert-danger")
 

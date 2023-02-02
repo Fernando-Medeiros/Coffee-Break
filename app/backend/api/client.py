@@ -55,7 +55,7 @@ class ClientApi:
         return resp.ok, resp.json().get("detail")
 
     @classmethod
-    def upload_profile(cls, **kwargs) -> tuple[bool, str]:
+    def update_profile(cls, **kwargs) -> tuple[bool, str]:
         """Optional: username, bio"""
         resp = requests.patch(
             cls._endpoint("/profile"), json=kwargs, headers=_authorization()
@@ -63,7 +63,7 @@ class ClientApi:
         return resp.ok, resp.json().get("detail")
 
     @classmethod
-    def upload_account(cls, **kwargs) -> tuple[bool, str]:
+    def update_account(cls, **kwargs) -> tuple[bool, str]:
         """Optional: first name, last name, email"""
         resp = requests.patch(
             cls._endpoint("/account"), json=kwargs, headers=_authorization()

@@ -14,7 +14,7 @@ def create_app() -> Flask:
 
     CORS(
         app,
-        allow_origins=list(str(os.getenv("ALLOWED_HOSTS")).split(",")),
+        allow_origins=str(os.getenv("ALLOWED_HOSTS")).split(","),
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
